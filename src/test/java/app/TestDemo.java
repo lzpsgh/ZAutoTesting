@@ -21,9 +21,11 @@ public class TestDemo {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability("platformName", "android");
         desiredCapabilities.setCapability("deviceName", "op");
+        // 通过 adb logcat | grep Displayed过滤出 com.xueqiu.android/.view.WelcomeActivityAlias
         desiredCapabilities.setCapability("appPackage", "com.xueqiu.android");
         desiredCapabilities.setCapability("appActivity", ".view.WelcomeActivityAlias");
-        desiredCapabilities.setCapability("noReset", true);//不清理缓存
+        //不清理缓存
+        desiredCapabilities.setCapability("noReset", true);
 
         URL remoteUrl = new URL("http://127.0.0.1:4723/wd/hub");
 
