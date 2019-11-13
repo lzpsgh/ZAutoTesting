@@ -4,7 +4,7 @@ import selenium.page.BasePage;
 
 public class DepartmentPage extends BasePage {
     public DepartmentPage addDepartment(){
-        return this;
+        return this;//
     }
     public DepartmentPage addSubDepartment(){
         return this;
