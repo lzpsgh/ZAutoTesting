@@ -1,14 +1,12 @@
-package selenium.page;
+package selenium.page.contacts;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import selenium.page.BasePage;
 
 import java.util.List;
 
-public class ContactPage extends BasePage{
+public class ContactPage extends BasePage {
     public ContactPage add(String username, String id, String phone){
         //最好先clear再sendkeys
         findElement(By.name("username")).sendKeys(username);
@@ -16,7 +14,6 @@ public class ContactPage extends BasePage{
         findElement(By.name("mobile")).sendKeys(phone);
         findElement(By.linkText("保存")).click();
         return this;
-
     }
 
     public ContactPage delete(String keyword){
@@ -64,6 +61,10 @@ public class ContactPage extends BasePage{
     }
 
     public void list(){
-
     }
+
+    public DepartmentPage toDepartmentPage(){
+        return new DepartmentPage();
+    }
+
 }

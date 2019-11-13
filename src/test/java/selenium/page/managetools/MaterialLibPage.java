@@ -1,5 +1,6 @@
-package selenium.page;
+package selenium.page.managetools;
 import org.openqa.selenium.By;
+import selenium.page.BasePage;
 
 public class MaterialLibPage extends BasePage {
 

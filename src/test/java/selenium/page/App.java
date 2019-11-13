@@ -3,6 +3,9 @@ package selenium.page;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import selenium.page.contacts.ContactPage;
+import selenium.page.managetools.ManageToolsPage;
+import selenium.page.managetools.MaterialLibPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +17,8 @@ public class App extends BasePage{
 
         driver = new ChromeDriver();
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        //Page Load Strategy: normal,eager,none
+        chromeOptions.setCapability("pageLoadStrategy","none");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 //        js = (JavascriptExecutor) driver;
 //        vars = new HashMap<String, Object>();
@@ -29,23 +33,31 @@ public class App extends BasePage{
 
         driver.navigate().refresh();
         return this;
-
     }
 
+//    public IndexPage toIndexPage(){
+//        findElement(By.linkText("首页")).click();
+//        return new IndexPage();
+//    }
     public ContactPage toContact(){
-//        findElement(By.linkText("添加成员")).click();
+        findElement(By.linkText("通讯录")).click();
         return new ContactPage();
     }
-
-    public ContactPage toMemberAdd(){
-        findElement(By.linkText("添加成员")).click();
-        return new ContactPage();
-    }
-
-    public MaterialLibPage toMediaLibrary(){
+//    public AppsPage toAppsPage(){
+//        findElement(By.linkText("应用管理")).click();
+//        return new AppsPage();
+//    }
+//    public CustomerPage toCustomerPage(){
+//        findElement(By.linkText("客户联系")).click();
+//        return new CustomerPage();
+//    }
+    public ManageToolsPage toManageToolsPage(){
         findElement(By.linkText("管理工具")).click();
-        findElement(By.cssSelector(".ww_icon_AppMaterialBig")).click();
-        return new MaterialLibPage();
+        return new ManageToolsPage();
     }
+//    public ProfilePage toProfilePage(){
+//        findElement(By.linkText("我的企业")).click();
+//        return new ProfilePage();
+//    }
 
 }
