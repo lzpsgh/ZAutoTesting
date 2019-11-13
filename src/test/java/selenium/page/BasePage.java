@@ -38,5 +38,7 @@ public class BasePage {
         new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
-
+    public void quit(){
+        driver.quit();
+    }
 }

@@ -24,8 +24,8 @@ public class App extends BasePage{
 
         System.out.println(driver.manage().getCookies());
 
-        driver.manage().addCookie(new Cookie("wwrtx.refid","18316058762159986"));
-        driver.manage().addCookie(new Cookie("wwrtx.sid","qMSD2gzQ7DG7eUrHLdy5kjvac9vc1pFA9h2XVG3c4v08a1fuRqZ-AISZxv5ykQEL"));
+//        driver.manage().addCookie(new Cookie("wwrtx.refid","18316058762159986"));
+        driver.manage().addCookie(new Cookie("wwrtx.sid","qMSD2gzQ7DG7eUrHLdy5kkMs83L_kQ5bvm41vg1CTCC5VkVToohHrHRo_LufCF-a"));
 
         driver.navigate().refresh();
         return this;
@@ -42,12 +42,10 @@ public class App extends BasePage{
         return new ContactPage();
     }
 
-    public MediaLibrary toMediaLibrary(){
+    public MaterialLibPage toMediaLibrary(){
         findElement(By.linkText("管理工具")).click();
         findElement(By.cssSelector(".ww_icon_AppMaterialBig")).click();
-        return new MediaLibrary();
+        return new MaterialLibPage();
     }
-    public void quit(){
 
-    }
 }

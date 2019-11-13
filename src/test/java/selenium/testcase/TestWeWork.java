@@ -51,12 +51,6 @@ public class TestWeWork {
 //        app.toContact().importFromFile();
 //    }
 
-    @Test
-    public void addMedia(){
-        // 只支持gif jpeg png bmp格式
-        app.toMediaLibrary().uploadImg("/Users/lensaclrtn/Downloads/miss.gif");
-    }
-
     @After
     public void After() {
         System.out.println("After");
