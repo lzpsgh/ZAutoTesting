@@ -1,16 +1,21 @@
 package selenium.testcase.contacts;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import selenium.data.TextObj;
 import selenium.page.App;
 import selenium.page.contacts.DepartmentPage;
+
+import java.util.List;
+
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestDepartment {
-    public static App app;
-    public static DepartmentPage departmentPage;
+    private static App app;
+    private static DepartmentPage departmentPage;
 
     @BeforeClass
     public static void loginFirst(){
@@ -18,17 +23,27 @@ public class TestDepartment {
         departmentPage = app.toContact().toDepartmentPage();
     }
 
+    @Before
+    public void beforeEach(){
+        System.out.println("beforeeach");
+        app.refresh();
+    }
+
     @Test
     public void testAddDepartment(){
-        departmentPage.addDepartment();
+        assertThat(departmentPage.getAllDepartment("Depart"), not(hasItem(TextObj.DEP_NAME_NEW)));
+        departmentPage.addDepartment(TextObj.DEP_NAME_NEW, TextObj.DEP_NAME_TOTAL);
+        assertThat(departmentPage.getAllDepartment("Depart"), (hasItem(TextObj.DEP_NAME_NEW)));
+        departmentPage.delDepartment(TextObj.DEP_NAME_NEW);//测试数据清理
     }
+
     @Test
     public void testAddSubDepartment(){
         departmentPage.addSubDepartment();
     }
     @Test
     public void testDelDepartment(){
-        departmentPage.delDepartment();
+        departmentPage.delDepartment("");
     }
     @Test
     public void testDelSubDepartment(){

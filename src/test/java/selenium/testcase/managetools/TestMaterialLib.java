@@ -9,8 +9,8 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class TestMaterialLib {
-    public static App app;
-    public static MaterialLibPage materialLibPage;
+    private static App app;
+    private static MaterialLibPage materialLibPage;
 
     @BeforeClass
     public static void loginFirst(){

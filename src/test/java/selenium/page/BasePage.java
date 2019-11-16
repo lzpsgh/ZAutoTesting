@@ -6,9 +6,28 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class BasePage {
     public static WebDriver driver;
 
+    public List<WebElement> findElements(By by){
+        return driver.findElements(by);
+    }
+
+    public void findClick(By by){
+        findElement(by).click();
+    }
+    public void findClick(By by,int timeout){
+        findElement(by,timeout).click();
+    }
+
+    public void findSendKeys(By by,String str){
+        findElement(by).sendKeys(str);
+    }
+    public void findSendKeys(By by,int timeout,String str){
+        findElement(by,timeout).sendKeys(str);
+    }
     public WebElement findElement(By by){
         waitClickable(by);
         return driver.findElement(by);
@@ -37,6 +56,13 @@ public class BasePage {
 
     public void waitVisible(By by){
         new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+    public void waitSleep(int second){
+        try {
+            Thread.sleep(second*1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
     public void refresh(){
         driver.navigate().refresh();
