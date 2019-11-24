@@ -18,4 +18,9 @@ public final class ByObj {
     // DepartPage 部门
     public static final By ALL_DEPS = By.cssSelector("[class=jstree-children]>li>a");
     public static final By ALL_SUB_DEPS = By.xpath("(//*[@class='jstree-children'])[2]/li/a");
+    public static final By DEP_BTN_UP = By.linkText("上移");
+    public static final By DEP_SUBMIT = By.linkText("确定");
+    public static final By DEP_BTN_DELETE = By.linkText("删除");
+    public static final By DEP_BTN_RENAME = By.cssSelector(".js_rename_input");
+    public static final By DEP_BTN_SAVE = By.linkText("保存");
 }

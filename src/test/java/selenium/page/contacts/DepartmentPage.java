@@ -13,8 +13,7 @@ public class DepartmentPage extends BasePage {
     /*
     获取所有部门信息
     */
-    public List<String> getAllDepartment(String depType){
-        System.out.println("getAll");
+    public List<String> getAllDepartmentName(String depType){
         List<String> list = new ArrayList<String>();
 //        waitVisible(By.id("js_tips"));
         waitSleep(1);
@@ -34,33 +33,41 @@ public class DepartmentPage extends BasePage {
     }
 
     public DepartmentPage addDepartment(String depNew,String depTotal){
-        System.out.println("add");
-        findClick(ByObj.addBtn);
-        findClick(ByObj.addDepart);
-        findSendKeys(ByObj.departNameInput,depNew);
-        findClick(ByObj.chooseParentDepartBtn);
+        findClick(By.cssSelector(".member_colLeft_top_addBtn"));
+        findClick(By.linkText("添加部门"));
+        findSendKeys(By.cssSelector(".inputDlg_item>input"),depNew);
+        findClick(By.cssSelector(".js_parent_party_name"));
         findElement(By.xpath("(//a[text()='"+depTotal+"'])[2]")).click();
-        findClick(ByObj.submit);
+        findClick(By.linkText("确定"));
         return this;
     }
-    public DepartmentPage addSubDepartment(){
-        System.out.println("addsub");
+
+
+    //TODO 待测试
+    public DepartmentPage delDepartment(String departName){
+        waitSleep(1);
+        findElement(By.xpath("(//*[text()='"+departName+"'])[1]")).click(); //点击部门
+        findElement(By.xpath("(//*[text()='"+departName+"'])/span")).click(); //点击选项
+        waitSleep(1);
+        findClick(By.linkText("删除"),10);
+        findClick(By.linkText("确定"));
         return this;
     }
-    public DepartmentPage delDepartment(String dep){
-        System.out.println("del");
+    public DepartmentPage moveupDepartment(String departName){
+        waitSleep(1);
+        findElement(By.xpath("(//*[text()='"+departName+"'])[1]")).click(); //点击部门
+        findElement(By.xpath("(//*[text()='"+departName+"'])/span")).click(); //点击选项
+        findClick(By.linkText("上移"));
         return this;
     }
-    public DepartmentPage delSubDepartment(){
-        System.out.println("delsub");
-        return this;
-    }
-    public DepartmentPage moveupDepartment(){
-        System.out.println("moveup");
-        return this;
-    }
-    public DepartmentPage renameDepartment(){
-        System.out.println("rename");
+    public DepartmentPage renameDepartment(String departName,String departNewName){
+        waitSleep(1);
+        findElement(By.xpath("(//*[text()='"+departName+"'])[1]")).click(); //点击部门
+        findElement(By.xpath("(//*[text()='"+departName+"'])/span")).click(); //点击选项
+        waitSleep(1);
+        findElement(By.linkText("修改名称")).click();
+        findSendKeys(By.cssSelector(".js_rename_input"),departNewName);
+        findClick(By.linkText("保存"));
         return this;
     }
 
