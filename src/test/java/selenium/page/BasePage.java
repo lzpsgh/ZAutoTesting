@@ -50,8 +50,8 @@ public class BasePage {
 
     public void waitClickable(By by){
         //presenceOfElementLocated是指元素出现在DOM内，此时未必可见
-        new WebDriverWait(driver,5).until(ExpectedConditions.visibilityOfElementLocated(by));
-        new WebDriverWait(driver,5).until(ExpectedConditions.elementToBeClickable(by));
+        new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOfElementLocated(by));
+        new WebDriverWait(driver,10).until(ExpectedConditions.elementToBeClickable(by));
     }
 
     public void waitVisible(By by){

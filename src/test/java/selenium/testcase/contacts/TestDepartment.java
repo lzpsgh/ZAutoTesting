@@ -38,43 +38,40 @@ public class TestDepartment {
         departmentPage.delDepartment(TextObj.DEP_NAME_NEW);//测试数据清理
     }
 
-
     @Test
     public void testAddSubDepartment(){
-        //TODO  待调试
-        departmentPage.addDepartment(TextObj.DEP_NAME_CHILD,TextObj.DEP_NAME_NEW);
+        departmentPage.addDepartment(TextObj.DEP_NAME_CHILD,TextObj.DEP_TEST);
         assertThat(departmentPage.getAllDepartmentName("SubDepart"), hasItem(TextObj.DEP_NAME_CHILD));
         departmentPage.delDepartment(TextObj.DEP_NAME_CHILD);
     }
     @Test
     public void testDelDepartment(){
-        //TODO  待调试
-        departmentPage.addDepartment(TextObj.DEP_NAME_DELETE,TextObj.DEP_NAME_TOTAL)
-                .delDepartment("TextObj.DEP_NAME_DELETE");
+        departmentPage.addDepartment(TextObj.DEP_NAME_DELETE,TextObj.DEP_NAME_TOTAL);
+//        assertThat(departmentPage.getAllDepartmentName("Depart"),hasItem(TextObj.DEP_NAME_DELETE));
+        departmentPage.delDepartment(TextObj.DEP_NAME_DELETE);
         assertThat(departmentPage.getAllDepartmentName("Depart"),not(hasItem(TextObj.DEP_NAME_DELETE)));
     }
     @Test
     public void testDelSubDepartment(){
-        //TODO  待调试
-        departmentPage.addDepartment(TextObj.DEP_NAME_DELETE,TextObj.DEP_NAME_NEW)
-                .delDepartment("TextObj.DEP_NAME_DELETE");
+        departmentPage.addDepartment(TextObj.DEP_NAME_DELETE,TextObj.DEP_TEST)
+                .delDepartment(TextObj.DEP_NAME_DELETE);
         assertThat(departmentPage.getAllDepartmentName("SubDepart"),not(hasItem(TextObj.DEP_NAME_DELETE)));
     }
     @Test
     public void testMoveupDepartment(){
-        //TODO  待调试
-        departmentPage.addDepartment(TextObj.DEP_NAME_UP,TextObj.DEP_NAME_TOTAL)
-                .moveupDepartment(TextObj.DEP_NAME_UP);
+        //没有处理排在首位的情况
+        departmentPage.addDepartment(TextObj.DEP_NAME_UP,TextObj.DEP_NAME_TOTAL);
+        departmentPage.moveupDepartment(TextObj.DEP_NAME_UP);
         List<String> allDepartments = departmentPage.getAllDepartmentName("Depart");
         assertThat(allDepartments.get(allDepartments.size()-1), not(TextObj.DEP_NAME_UP));
+        departmentPage.delDepartment(TextObj.DEP_NAME_UP);
     }
     @Test
     public void testRenameDepartment(){
-        //TODO  待调试
         departmentPage.addDepartment(TextObj.DEP_NAME_NEW,TextObj.DEP_NAME_TOTAL)
-                .renameDepartment(TextObj.DEP_NAME_NEW,TextObj.DEP_NAME_MOD);
-        assertThat(departmentPage.getAllDepartmentName("Depart"), hasItem(TextObj.DEP_NAME_MOD));
-        departmentPage.delDepartment(TextObj.DEP_NAME_MOD);
+                .renameDepartment(TextObj.DEP_NAME_NEW,TextObj.DEP_NAME_RENAME);
+        assertThat(departmentPage.getAllDepartmentName("Depart"), hasItem(TextObj.DEP_NAME_RENAME));
+        departmentPage.delDepartment(TextObj.DEP_NAME_RENAME);
     }
 
     @AfterClass

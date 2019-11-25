@@ -42,8 +42,6 @@ public class DepartmentPage extends BasePage {
         return this;
     }
 
-
-    //TODO 待测试
     public DepartmentPage delDepartment(String departName){
         waitSleep(1);
         findElement(By.xpath("(//*[text()='"+departName+"'])[1]")).click(); //点击部门
