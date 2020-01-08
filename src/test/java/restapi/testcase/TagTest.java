@@ -12,7 +12,6 @@ public class TagTest {
     private Tag tag = new Tag();
     int tmpId;
 
-    // TODO 用yaml管理测试数据
     String createTagName = "createTagName1";
     int createTagId = 101;
 

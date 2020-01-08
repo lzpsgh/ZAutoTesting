@@ -23,7 +23,7 @@ public class Department {
         .when()
                 .post("/create")
         .then()
-                .log().all()
+//                .log().all()
                 .extract().response();
 //                .body("errcode",equalTo(0));
     }
@@ -35,7 +35,7 @@ public class Department {
         .when()
             .get("/delete")
         .then()
-            .log().all()
+//            .log().all()
             .extract().response();
 
     }
@@ -46,7 +46,7 @@ public class Department {
                 .when()
                 .get("/list")
                 .then()
-                .log().all()
+//                .log().all()
                 .extract().response();
 //                .body("errcode",equalTo(0));
     }

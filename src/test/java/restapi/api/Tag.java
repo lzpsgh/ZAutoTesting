@@ -18,7 +18,7 @@ public class Tag {
                     .contentType(ContentType.JSON)
                     .body(map)
                 .when()
-                    .log().all()
+//                    .log().all()
                     .post("/create")
                 .then()
                     .extract().response();
@@ -33,7 +33,7 @@ public class Tag {
                     .contentType(ContentType.JSON)
                     .body(map)
                 .when()
-                    .log().all()
+//                    .log().all()
                     .post("/create")
                 .then()
                     .extract().response();
@@ -49,7 +49,7 @@ public class Tag {
                     .contentType(ContentType.JSON)
                     .body(map)
                 .when()
-                    .log().all()
+//                    .log().all()
                     .post("/update")
                 .then()
                     .extract().response();
@@ -60,7 +60,7 @@ public class Tag {
                     .queryParam("access_token",BaseWework.getInstance().getToken())
                     .formParam("tagid",tagId)
                 .when()
-                    .log().all()
+//                    .log().all()
                     .get("/delete")
                 .then()
                     .extract().response();
@@ -71,7 +71,7 @@ public class Tag {
         return given()
                     .queryParam("access_token",BaseWework.getInstance().getToken())
                 .when()
-                    .log().all()
+//                    .log().all()
                     .get("/list")
                 .then()
                     .extract().response();
