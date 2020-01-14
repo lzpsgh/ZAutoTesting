@@ -1,0 +1,144 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://example.com/root.json",
+    "type": "object",
+    "title": "The Root Schema",
+    "required": [
+      "errcode",
+      "errmsg",
+      "userid",
+      "name",
+      "department",
+      "position",
+      "mobile",
+      "gender",
+      "email",
+      "avatar",
+      "status",
+      "isleader"
+    ],
+    "properties": {
+      "errcode": {
+        "$id": "#/properties/errcode",
+        "type": "integer",
+        "title": "The Errcode Schema",
+        "default": 0,
+        "examples": [
+          0
+        ]
+      },
+      "errmsg": {
+        "$id": "#/properties/errmsg",
+        "type": "string",
+        "title": "The Errmsg Schema",
+        "default": "",
+        "examples": [
+          "ok"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "userid": {
+        "$id": "#/properties/userid",
+        "type": "string",
+        "title": "The Userid Schema",
+        "default": "",
+        "examples": [
+          "seveniruby1564217505.480352"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "name": {
+        "$id": "#/properties/name",
+        "type": "string",
+        "title": "The Name Schema",
+        "default": "",
+        "examples": [
+          "name for testing"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "department": {
+        "$id": "#/properties/department",
+        "type": "array",
+        "title": "The Department Schema",
+        "items": {
+          "$id": "#/properties/department/items",
+          "type": "integer",
+          "title": "The Items Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        }
+      },
+      "position": {
+        "$id": "#/properties/position",
+        "type": "string",
+        "title": "The Position Schema",
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "pattern": "^(.*)$"
+      },
+      "mobile": {
+        "$id": "#/properties/mobile",
+        "type": "string",
+        "title": "The Mobile Schema",
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "pattern": "^(.*)$"
+      },
+      "gender": {
+        "$id": "#/properties/gender",
+        "type": "string",
+        "title": "The Gender Schema",
+        "default": "",
+        "examples": [
+          "1"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "email": {
+        "$id": "#/properties/email",
+        "type": "string",
+        "title": "The Email Schema",
+        "default": "",
+        "examples": [
+          "seveniruby1564217505.480352@testerhome.com"
+        ],
+        "pattern": "^(.*)$"
+      },
+      "avatar": {
+        "$id": "#/properties/avatar",
+        "type": "string",
+        "title": "The Avatar Schema",
+        "default": "",
+        "examples": [
+          ""
+        ],
+        "pattern": "^(.*)$"
+      },
+      "status": {
+        "$id": "#/properties/status",
+        "type": "integer",
+        "title": "The Status Schema",
+        "default": 0,
+        "examples": [
+          10
+        ]
+      },
+      "isleader": {
+        "$id": "#/properties/isleader",
+        "type": "integer",
+        "title": "The Isleader Schema",
+        "default": 0,
+        "examples": [
+          0
+        ]
+      }
+    }
+  }

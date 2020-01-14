@@ -1,14 +1,9 @@
 package restapi.api;
 
-import com.github.mustachejava.DefaultMustacheFactory;
-import com.github.mustachejava.Mustache;
-import com.github.mustachejava.MustacheFactory;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.Test;
-import restapi.BaseWework;
+import restapi.base.BaseWework;
 
-import java.io.*;
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
@@ -26,7 +21,7 @@ public class User {
                 .then()
                     .log().all()
                     .extract().response();
-//                .body("errcode",equalTo(0));
+//                .postBodyMap("errcode",equalTo(0));
     }
 
     //读取成员信息
@@ -39,7 +34,7 @@ public class User {
                 .then()
 //                    .log().all()
                 .extract().response();
-//                .body("errcode",equalTo(0));
+//                .postBodyMap("errcode",equalTo(0));
     }
 
     //更新成员
@@ -53,7 +48,7 @@ public class User {
                 .then()
                 .log().all()
                 .extract().response();
-//                .body("errcode",equalTo(0));
+//                .postBodyMap("errcode",equalTo(0));
     }
 
     //批量删除成员
@@ -69,7 +64,7 @@ public class User {
                 .then()
                     .log().all()
                     .extract().response();
-//                .body("errcode",equalTo(0));
+//                .postBodyMap("errcode",equalTo(0));
     }
 
     //获取部门成员
@@ -83,23 +78,23 @@ public class User {
                 .then()
                     .log().all()
                     .extract().response();
-//                .body("errcode",equalTo(0));
+//                .postBodyMap("errcode",equalTo(0));
     }
 
 //    public Response cloneUser() {
 //        userData.put("userid",userid);
-//        String body = template(path,userData);
+//        String postBodyMap = template(path,userData);
 //
 //        return given()
 //                    .contentType(ContentType.JSON)
 //                    .queryParam("access_token", BaseWework.getInstance().getToken())
-//                    .body(body)
+//                    .postBodyMap(postBodyMap)
 //                .when()
 //                    .post("/create")
 //                    .then()
 //                    .log().all()
 //                .extract().response();
-////                .body("errcode",equalTo(0));
+////                .postBodyMap("errcode",equalTo(0));
 //    }
 
 //    @Test

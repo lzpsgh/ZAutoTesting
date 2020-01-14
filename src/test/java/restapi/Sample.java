@@ -1,5 +1,8 @@
 package restapi;
 
+import com.github.mustachejava.DefaultMustacheFactory;
+import com.github.mustachejava.Mustache;
+import com.github.mustachejava.MustacheFactory;
 import io.restassured.RestAssured;
 import io.restassured.builder.ResponseBuilder;
 import io.restassured.response.Response;
@@ -7,13 +10,16 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.math.BigDecimal;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.Base64;
+import java.util.HashMap;
 
 import static io.restassured.RestAssured.*;
 import static io.restassured.config.JsonConfig.jsonConfig;
 import static io.restassured.matcher.RestAssuredMatchers.*;
-import static io.restassured.path.json.config.JsonPathConfig.NumberReturnType.BIG_DECIMAL;
+import static io.restassured.module.jsv.JsonSchemaValidator.*;
 import static org.hamcrest.Matchers.*;
 
 
@@ -100,7 +106,7 @@ public class Sample {
                 .when()
                 .get("http://www.bing.com/search")
                 .then()
-//            .body("price", is(new BigDecimal(12.12))
+//            .postBodyMap("price", is(new BigDecimal(12.12))
                 .log().all()
                 .statusCode(200)
                 .body("root.parent",hasItem("sss"))
@@ -108,11 +114,20 @@ public class Sample {
         ;
     }
 
-
     @Test
     public void testBase64(){
-        String strBase = "ewogICAibG90dG8iOnsKICAgICAgImxvdHRvSWQiOjUsCiAgICAgICJ3aW5uaW5nLW51bWJlcnMiOlsyLDQ1LDM0LDIzLDcsNSwzXSwKICAgICAgIndpbm5lcnMiOlsKICAgICAgICAgewogICAgICAgICAgICAid2lubmVySWQiOjIzLAogICAgICAgICAgICAibnVtYmVycyI6WzIsNDUsMzQsMjMsMyw1XQogICAgICAgICB9LAogICAgICAgICB7CiAgICAgICAgICAgICJ3aW5uZXJJZCI6NTQsCiAgICAgICAgICAgICJudW1iZXJzIjpbNTIsMywxMiwxMSwxOCwyMl0KICAgICAgICAgfQogICAgICBdCiAgIH0KfQ==";
+        given().filter(new RespBase64Filter())
+                .get("http://101.132.159.87:8080/user.json")
+                .prettyPeek()
+                .then()
+                .statusCode(200)
+                .body("errcode",equalTo(0))
+                .body("errmsg",equalTo("ok"))
+        ;
+    }
 
+    @Ignore
+    public void testBase64Tmp(){
         given().filter( (req,res,ctx)-> {
             Response resOrigin = ctx.next(req,res);
             ResponseBuilder responseBuilder = new ResponseBuilder().clone(resOrigin);
@@ -125,14 +140,37 @@ public class Sample {
             Response resNew = responseBuilder.build();
             return resNew;
         })
-                .get(urlBase64)
+//                .get(urlBase64)
+                .get("http://101.132.159.87:8080/user.json")
                 .prettyPeek()
                 .then()
                 .statusCode(200)
-//                .body("",equalTo(""))
+                .body("errcode",equalTo(0))
+                .body("errmsg",equalTo("ok"))
         ;
     }
 
+    public String cloneFromTemplate(String templatePath, HashMap<String, Object> data){
+        Writer writer = new StringWriter();
+        MustacheFactory mf = new DefaultMustacheFactory();
+        Mustache mustache = mf.compile(this.getClass().getResource(templatePath).getPath());//mf.compile(templatePath);
+        mustache.execute(writer, data);
+        try {
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return writer.toString();
+    }
+
+//    public String matchSchema(){
+//        get(urlBeal)
+//                .then().assertThat()
+//                .postBodyMap(matchesJsonSchemaInClasspath("restapi/schema_user_get.json"));
+//    }
+
+    //关闭https校验
+//    RestAssured.useRelaxedHTTPSValidation();
 
 }
 

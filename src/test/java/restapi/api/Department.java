@@ -1,12 +1,11 @@
 package restapi.api;
 
 import io.restassured.http.ContentType;
-import restapi.BaseWework;
+import restapi.base.BaseWework;
 import io.restassured.response.Response;
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.equalTo;
 
 public class Department {
 
@@ -25,7 +24,7 @@ public class Department {
         .then()
 //                .log().all()
                 .extract().response();
-//                .body("errcode",equalTo(0));
+//                .postBodyMap("errcode",equalTo(0));
     }
 
     public Response deleteDepartment(int depid){
@@ -48,7 +47,7 @@ public class Department {
                 .then()
 //                .log().all()
                 .extract().response();
-//                .body("errcode",equalTo(0));
+//                .postBodyMap("errcode",equalTo(0));
     }
 
     public Response getDepartmentList(int parentDepartid){
@@ -61,6 +60,6 @@ public class Department {
         .then()
 //                .log().all()
                 .extract().response();
-//                .body("errcode",equalTo(0));
+//                .postBodyMap("errcode",equalTo(0));
     }
 }

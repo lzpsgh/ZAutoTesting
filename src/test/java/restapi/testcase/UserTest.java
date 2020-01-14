@@ -81,6 +81,7 @@ public class UserTest {
 
     @Test
     public void testDeleteBatchUser(){
+        //删除前还没有做数据准备
         String[] batchDeleteList = new String[] {"userid_1578126966675","asdf"};
         HashMap<String,Object> userData = new HashMap<>();
         userData.put("useridlist", batchDeleteList);

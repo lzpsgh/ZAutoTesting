@@ -1,7 +1,7 @@
 package restapi.api;
 
 import io.restassured.http.ContentType;
-import restapi.BaseWework;
+import restapi.base.BaseWework;
 import io.restassured.response.Response;
 import java.util.HashMap;
 
