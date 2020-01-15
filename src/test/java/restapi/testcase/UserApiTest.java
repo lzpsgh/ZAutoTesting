@@ -8,8 +8,8 @@ public class UserApiTest {
 
     @Test
     public void get(){
-        UserApi userServiceApi = new UserApi();
-        userServiceApi.getUser("userid_1234").then().body("errcode",equalTo(0));
+        UserApi userApi = new UserApi();
+        userApi.getUser("userid_1234").then().body("errcode",equalTo(0));
     }
 
     @Test

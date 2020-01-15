@@ -2,5 +2,6 @@
   userid: xxx
 - name: yyy
   userid: yyy
+  depart: [1, 3]
 - name: zzz
   userid: zzz

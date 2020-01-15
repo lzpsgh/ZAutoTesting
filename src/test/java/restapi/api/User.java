@@ -1,9 +1,15 @@
 package restapi.api;
 
+import com.github.mustachejava.DefaultMustacheFactory;
+import com.github.mustachejava.Mustache;
+import com.github.mustachejava.MustacheFactory;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import restapi.base.BaseWework;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
@@ -81,33 +87,30 @@ public class User {
 //                .postBodyMap("errcode",equalTo(0));
     }
 
-//    public Response cloneUser() {
-//        userData.put("userid",userid);
-//        String postBodyMap = template(path,userData);
-//
-//        return given()
-//                    .contentType(ContentType.JSON)
-//                    .queryParam("access_token", BaseWework.getInstance().getToken())
-//                    .postBodyMap(postBodyMap)
-//                .when()
-//                    .post("/create")
-//                    .then()
-//                    .log().all()
-//                .extract().response();
-////                .postBodyMap("errcode",equalTo(0));
-//    }
+    public Response clone(String userid, HashMap<String, Object> data) {
+        data.put("userid", userid);
+        String body=template("user.json", data);
 
-//    @Test
-//    public String template() throws IOException {
-//        HashMap<String ,Object> scopes = new HashMap<String,Object>();
-//        scopes.put("name","Mustache");
-//        Writer writer = new StringWriter();
-//        MustacheFactory mf = new DefaultMustacheFactory();
-//        Mustache mustache = mf.compile('src/main/resourdce根目录');
-//        mustache.execute(writer,scopes);
-//        writer.flush();
-//        return writer.toString();
-//    }
+        return given()
+                .queryParam("access_token", BaseWework.getInstance().getToken())
+                .contentType(ContentType.JSON)
+                .body(body)
+                .when().log().all().post("https://qyapi.weixin.qq.com/cgi-bin/user/create")
+                .then().log().all().extract().response();
+    }
+
+    public String template(String templatePath, HashMap<String, Object> data){
+        Writer writer = new StringWriter();
+        MustacheFactory mf = new DefaultMustacheFactory();
+        Mustache mustache = mf.compile(this.getClass().getResource(templatePath).getPath());
+        mustache.execute(writer, data);
+        try {
+            writer.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return writer.toString();
+    }
 }
 
 
