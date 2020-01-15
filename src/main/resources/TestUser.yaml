@@ -30,11 +30,11 @@
     ],
     "external_corp_name": ""
   },
-  "qr_code": "https://open.work.weixin.qq.com/wwopen/userQRCode?vcode=vccb9ee8ba8613e760",
+  "qr_code": "",
   "alias": "test",
   "is_leader_in_dept": [
     1
   ],
-  "address": "上海市黄浦区外滩18号8888号东方明珠最高层",
+  "address": "address",
   "thumb_avatar": ""
 }

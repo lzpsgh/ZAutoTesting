@@ -50,7 +50,7 @@ public class UserTest {
             .then()
                 .body("errcode",equalTo(0))
                 .body("errmsg",equalTo("ok"))
-                .body("name",equalTo("李兆鹏"));
+                .body("name",equalTo("李兆"));
     }
 
     @Test

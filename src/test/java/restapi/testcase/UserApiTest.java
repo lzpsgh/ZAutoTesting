@@ -9,12 +9,12 @@ public class UserApiTest {
     @Test
     public void get(){
         UserApi userServiceApi = new UserApi();
-        userServiceApi.getUser("story11578206671544").then().body("errcode",equalTo(0));
+        userServiceApi.getUser("userid_1234").then().body("errcode",equalTo(0));
     }
 
     @Test
     public void delete(){
         UserApi userServiceApi = new UserApi();
-        userServiceApi.deleteUser("1111").then().body("errcode",equalTo(0));
+        userServiceApi.deleteUser("userid_1234").then().body("errcode",equalTo(0));
     }
 }
